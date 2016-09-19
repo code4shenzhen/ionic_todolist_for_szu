@@ -55,6 +55,25 @@
   </ion-header-bar>
 
   <ion-content>
+
+    <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+      <ion-item ng-repeat="item in $storage.items" item="item" class="item-remove-animate">
+        {{item.label}}
+        <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
+        <ion-option-button class="button-assertive" ng-click="edit($index)">Edit</ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item,$fromIndex,$toIndex)"></ion-reorder-button>
+      </ion-item>
+
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Todo item" ng-model="data.item">
+        </label>
+        <button class="button button-small" ng-click="addItem()">Add</button>
+      </div>
+
+    </ion-list>
+
   </ion-content>
 </ion-pane>
 </body>
